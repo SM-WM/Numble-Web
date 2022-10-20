@@ -1,0 +1,27 @@
+.title {
+    font-family: "Georgia";
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 0.01em;
+    line-height: 100%;
+  }
+
+.test {
+    display:flex;
+    padding: 10px 10px;
+    align-items: center;
+    justify-content:last baseline;
+}
+
+.leftAlign {
+    display: flex;
+    justify-content: first baseline;
+    align-items: center;
+}
+
+.rightAlign {
+    display:flex;
+    justify-content:last baseline;
+    align-items: center; 
+}
+

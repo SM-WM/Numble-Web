@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -19,15 +19,11 @@ h1 {
   color: brown;
 }
 
+nav {
+ border-bottom: 1px cadetblue;
+}
 .test{
   color: aqua;
-}
-
-.Button.icon {
-  background-color: rosybrown;
-  color: bisque;
-  border:0ch;
-  border-radius: 50%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,4 +37,14 @@ h1 {
 }
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+
+.button {
+  background-color: transparent;
+  
+  border: 0ch;
+}
+
+.button:hover {
+  color: transparent;
+}

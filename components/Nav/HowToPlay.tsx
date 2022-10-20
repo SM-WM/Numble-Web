@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+//import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HelpOutlineRoundedIcon from '@mui/icons-material/HelpOutlineRounded';
+import styles from './HowToPlay.module.css';
 
 
 export default function HowToPlay() {
@@ -13,9 +14,9 @@ export default function HowToPlay() {
 
   return (
     <div>
-        <Button className='Button.icon' onClick={handleShow}>
-        <HelpOutlineRoundedIcon />
-        </Button>
+        <button className={styles.button} onClick={handleShow}>
+           <HelpOutlineRoundedIcon sx={{ color: "black" }} />
+        </button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
