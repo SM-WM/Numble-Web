@@ -7,10 +7,13 @@ type RowProps = {
 export default function Row({guess} : RowProps) {
     
     return(
-        <div className="row">        
-            {guess.map((char, i) => {
-                return <Number content = {char} />
-            })}
+        <div className="row">    
+            {Array.from({length: 4}).map((_, i) => {
+                return <Number content = {guess[i] || ''} />
+            } ) }    
+            {/* {guess.map((char, i) => {
+            //     return <Number content = {char} />
+            // })} */}
         </div>
 
     )

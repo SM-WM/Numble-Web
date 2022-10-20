@@ -1,29 +1,15 @@
-/* html,
+html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: Verdana, Geneva, Tahoma, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+.mainBody {
+  justify-content: center;
+  text-align: center;
 
-* {
-  box-sizing: border-box;
-}
-
-h1 {
-  color: brown;
-}
-
-nav {
- border-bottom: 1px cadetblue;
-}
-.test{
-  color: aqua;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,14 +23,5 @@ nav {
 }
 @tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities; 
 
-.button {
-  background-color: transparent;
-  
-  border: 0ch;
-}
-
-.button:hover {
-  color: transparent;
-}

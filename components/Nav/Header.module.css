@@ -1,27 +1,35 @@
 .title {
-    font-family: "Georgia";
-    font-weight: 900;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 300;
     font-size: 20px;
     letter-spacing: 0.01em;
     line-height: 100%;
+    padding-bottom: 5px;
   }
 
 .test {
     display:flex;
     padding: 10px 10px;
     align-items: center;
-    justify-content:last baseline;
+    height: 64px;
+
 }
 
 .leftAlign {
     display: flex;
     justify-content: first baseline;
     align-items: center;
+    padding-left: 20%
+
 }
 
 .rightAlign {
     display:flex;
     justify-content:last baseline;
     align-items: center; 
+    padding-left: 40%
 }
 
+.rightAlign * {
+    padding: 2px;
+}

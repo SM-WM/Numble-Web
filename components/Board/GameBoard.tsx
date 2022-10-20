@@ -5,50 +5,62 @@ import styles from './GameBoard.module.css'
 
 
 export default function() {
+    const[submittedGuesses, setSubmittedGuesses] = useState<Array<Array<string>>>([]);
     const[guess, setGuess] = useState<Array<string>>([])
+
+    const totalGuessMax = 10;
     
-    // useEffect(() => {
-       
-    //     window.addEventListener('keydown', ({key}) => {
-    //         console.log(key);
-    //         if (guess.length < 4) {
-    //             const isNum = /^[0-9]$/.test(key);
-
-    //             if (isNum) {
-    //                 setGuess((prev) => [...prev, key])
-    //             }
-    //             console.log({key, isNum})
-    //         }
-    //         console.log(guess)
-    //     }) 
-    // }, [guess.length])
-
     useEffect(() => {
         function handleKeyDown({key}: {key: string}) {
-                
-            if (guess.length < 4) {
-                const isNum = /^[0-9]$/.test(key);
-    
-                if (isNum) {
-                    setGuess((prev) => [...prev, key])
-                }
+            const isNum = /^[0-9]$/.test(key);
+            const isBackspace = key === 'Backspace';
+            const isSubmit = key === 'Enter';
 
-                console.log({key, isNum})
+            if (isBackspace) {
+                setGuess((prev) => {
+                    const temp = [...prev];
+                    temp.pop();
+                    return temp;
+                })
             }
-            console.log(guess)
+            else if (isNum && guess.length < 4) {
+                setGuess((prev) => [...prev, key])
+
+                //console.log({key, isNum})
+            }
+            else if(isSubmit && guess.length === 4 && submittedGuesses.length < 10){
+                setSubmittedGuesses((prev) => [...prev, guess])
+                setGuess([])
+                console.log("submitted guess")
+            }
+
+            //console.log(submittedGuesses)1
         }
         window.addEventListener('keydown', handleKeyDown);
 
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         }
-    }, [guess.length])
+    }, [guess.length, guess])
 
-    //console.log(guess)
+    //console.log(submittedGuesses)
 
     return(
+        
         <div className={styles.board}>
-            <Row guess={guess} />
+            {Array.from({length: submittedGuesses.length}).map((_, i) => {
+                return <Row guess={submittedGuesses[i]} />
+            })}
+
+            {submittedGuesses.length<10?  <Row guess={guess} /> : console.log("done")  }
+                {/* return <Row guess={guess} />   */}
+           
+
+
+            {Array.from({length: totalGuessMax - submittedGuesses.length - 1}).map((_, i) => {
+                return <Row guess = {[]} />
+            })}
+            
         </div> 
 
     )

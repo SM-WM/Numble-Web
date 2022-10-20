@@ -7,11 +7,12 @@ import GameBoard from '../components/Board/GameBoard'
 
 const Home: NextPage = () => {
   return (
-    <div>
-      <Help  />
-      <Statistics />
-      <Keyboard />
+    <div className='mainBody'>
+
       <GameBoard />
+      {/* <Help  />
+      <Statistics /> */}
+      <Keyboard />
     </div>
   )
 }
