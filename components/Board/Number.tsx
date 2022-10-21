@@ -5,7 +5,7 @@ type NumberProps = {
     content: string;
 };
 
-export default function({content}: NumberProps) {
+export default function Number({content}: NumberProps) {
     return (
         <span className={styles.char}>{content}</span>
     )

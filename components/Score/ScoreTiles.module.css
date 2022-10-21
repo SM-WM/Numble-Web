@@ -1,0 +1,33 @@
+.tile {
+    border: 1px solid black;
+    border-radius: 2px;
+    width: 23px;
+    height: 23px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    margin-right: 1px;
+    justify-content: center;
+}
+
+.scoreRow {
+    display: flex;
+    justify-content: center;
+  }
+
+.score {
+    justify-content: center;
+    margin: 4px
+}
+
+.correctChar {
+    background-color: #26AD60;
+}
+
+.misplacedChar {
+    background-color: #F2C84C;
+}
+
+.wrongChar {
+    background-color: #828282;
+}

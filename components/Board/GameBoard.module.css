@@ -5,3 +5,7 @@
     align-items: center;
     flex-direction: column;
 }
+
+.currentGuess{
+  background-color: bisque;
+}

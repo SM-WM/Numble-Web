@@ -1,19 +1,23 @@
-import { NumbersRounded } from "@mui/icons-material"
+import styles from "./Row.module.css"
 import Number from "./Number"
+import ScoreTiles from "../Score/ScoreTiles"
 
 type RowProps = {
     guess: Array<string>;
+    currentNumble: string
 };
-export default function Row({guess} : RowProps) {
+export default function Row({guess, currentNumble} : RowProps) {
     
     return(
-        <div className="row">    
-            {Array.from({length: 4}).map((_, i) => {
-                return <Number content = {guess[i] || ''} />
-            } ) }    
-            {/* {guess.map((char, i) => {
-            //     return <Number content = {char} />
-            // })} */}
+        <div className={styles.completerow}>    
+            <div className={styles.row}>
+                {Array.from({length: 4}).map((_, i) => {
+                return <Number content = {guess[i]} />
+                } ) }  
+            </div> 
+
+            <ScoreTiles currentGuess={guess} currentNumble={currentNumble} />
+
         </div>
 
     )
