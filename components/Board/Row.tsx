@@ -14,7 +14,7 @@ export default function Row({guess, currentNumble, tryIndex} : RowProps) {
             <div className={styles.tryIdx}>{tryIndex}</div>
             <div className={styles.row}>
                 {Array.from({length: 4}).map((_, i) => {
-                return <Number content = {guess[i]} />
+                return <Number content = {guess[i]} key={i} />
                 } ) }  
             </div> 
 
