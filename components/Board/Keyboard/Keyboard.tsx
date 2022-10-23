@@ -15,12 +15,12 @@ export default function Keyboard({keyPressHandler}: KeyboardProps) {
     
     const firstRow = useMemo(() => {
         return "0123456".split("").map((char) => {
-            return <Key keyPressHandler={keyPressHandler} keyName={char} keyDisplay={char}/>
+            return <Key keyPressHandler={keyPressHandler} key={char} keyName={char} keyDisplay={char}/>
         });
     }, [keyPressHandler])
     const secondRow = useMemo(() => {
         return "789".split("").map((char) => {
-            return <Key keyPressHandler={keyPressHandler} keyName={char} keyDisplay={char}/>
+            return <Key keyPressHandler={keyPressHandler} key={char} keyName={char} keyDisplay={char}/>
         });
     }, [keyPressHandler])
 

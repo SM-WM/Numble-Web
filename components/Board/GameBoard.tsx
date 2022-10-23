@@ -60,7 +60,7 @@ export default function GameBoard({correctNumble}: GameBoardProps) {
             <div className={styles.board}>
                 <div>
                     {Array.from({length: currNumOfGuesses}).map((_, i) => {
-                    return <Row guess={submittedGuesses[i]} currentNumble={correctNumble} tryIndex={i+1} />
+                    return <Row guess={submittedGuesses[i]} key={i} currentNumble={correctNumble} tryIndex={i+1} />
                     })}
                 </div>
 
@@ -70,7 +70,7 @@ export default function GameBoard({correctNumble}: GameBoardProps) {
             
                 <div>
                     {Array.from({length: totalGuessMax - currNumOfGuesses - (isCorrect ? 0 : 1)}).map((_, i) => {
-                    return <Row guess = {[]} currentNumble=""  tryIndex={currNumOfGuesses + (isCorrect ? 0 : 1) + i + 1} />
+                    return <Row guess = {[]} currentNumble=""  key={i} tryIndex={currNumOfGuesses + (isCorrect ? 0 : 1) + i + 1} />
                     })}
                 </div>
                 {/* <div className={styles.Test}>{correctNumble}</div>

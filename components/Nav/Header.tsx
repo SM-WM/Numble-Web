@@ -12,7 +12,7 @@ export default function Header() {
             <nav className={styles.test}>
                 <div className={styles.leftAlign} >
                     <Link href="/"><a>
-                    <Image src={numble_logo} height={35} width={35}/></a></Link>
+                    <Image src={numble_logo} alt="Numble_logo" height={35} width={35}/></a></Link>
                     <div className={styles.title}> Numble </div>
                 </div>
                 <div className={styles.rightAlign}>
