@@ -23,7 +23,7 @@ export default function HowToPlay() {
           <Modal.Title>Guess the Numble in 10 tries</Modal.Title>
         </Modal.Header>
         <Modal.Body className='test'>
-          <p>Every numble is composed of 4 unique digits. Each guess will be a 4 digit number... Your solution's digits don't have to be unique. Hit the enter button to submit.</p>
+          <p>Every numble is composed of 4 unique digits. Each guess will be a 4 digit number... Your solution&apos;s digits don&apos;t have to be unique. Hit the enter button to submit.</p>
 
           <p>After each guess, the score column will let you know:</p>
 
@@ -34,7 +34,7 @@ export default function HowToPlay() {
 
           <p><b>The catch:</b></p>
 
-          <p>You won't know which digits in your guess are correct, misplaced or wrong. As you'll see, getting all four digits wrong is one of the best things that can happen at the start.</p>
+          <p>You will not know which digits in your guess are correct, misplaced or wrong. As you&apos;ll see, getting all four digits wrong is one of the best things that can happen at the start.</p>
 
           <p>Happy Guessing!</p>
         </Modal.Body>
