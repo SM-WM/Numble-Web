@@ -1,6 +1,6 @@
 .tile {
     border: 1px solid black;
-    border-radius: 2px;
+    border-radius: 3px;
     width: 23px;
     height: 23px;
     margin-top: 1px;
@@ -8,26 +8,97 @@
     margin-left: 1px;
     margin-right: 1px;
     justify-content: center;
+    transform: rotateZ();
 }
 
 .scoreRow {
-    display: flex;
+    display: grid;
     justify-content: center;
-  }
+    grid-template-columns: 1fr 1fr
+}
 
 .score {
     justify-content: center;
     margin: 4px
 }
 
+/* Animation Delay */
+.tile:nth-of-type(2) {
+    animation-delay: 200ms;
+}
+.tile:nth-of-type(3) {
+    animation-delay: 400ms;
+}
+.tile:nth-of-type(4) {
+    animation-delay: 600ms;
+}
+
+
 .correctChar {
-    background-color: #26AD60;
+    animation: flipIn 1s linear, bgCorrect 1s linear forwards;
 }
 
 .misplacedChar {
-    background-color: #F2C84C;
+    animation: flipIn 1s linear, bgMisplaced 1s linear forwards;
 }
 
 .wrongChar {
-    background-color: #828282;
+    animation: flipIn 1s linear, bgWrong 1s linear forwards;
+}
+
+@keyframes flipIn {
+    0% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
+@keyframes bgCorrect {
+    0% {
+        background-color: transparent;
+    }
+    49% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: var(--green);
+    }
+    100%{
+        background-color: var(--green);
+    }
+}
+
+@keyframes bgMisplaced {
+    0% {
+        background-color: transparent;
+    }
+    49% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: var(--yellow);
+    }
+    100%{
+        background-color: var(--yellow);
+    }
+}
+
+@keyframes bgWrong {
+    0% {
+        background-color: transparent;
+    }
+    49% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: var(--gray);
+    }
+    100%{
+        background-color: var(--gray);
+    }
 }

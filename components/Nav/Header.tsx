@@ -12,11 +12,11 @@ export default function Header() {
             <nav className={styles.test}>
                 <div className={styles.leftAlign} >
                     <Link href="/"><a>
-                    <Image src={numble_logo} height={30} width={30}/></a></Link>
+                    <Image src={numble_logo} height={35} width={35}/></a></Link>
                     <div className={styles.title}> Numble </div>
                 </div>
                 <div className={styles.rightAlign}>
-                    <Link href="/settings"><a><SettingsIcon /></a></Link>
+                    <Link href="/settings"><a><SettingsIcon height={35} width={35} /></a></Link>
                     <Link href="/statistics"><a><BarChartIcon /></a></Link>
                     <HowToPlay />                    
                 </div>

@@ -8,3 +8,33 @@
     display: flex;
     justify-self: center;
 }
+
+.tryIdx {
+    /* font-size: 15px;
+    color: gray;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    line-height: 50px;
+    width: 50px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px; */
+
+    border: 1px solid gray;
+    font-size: 15px;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
+    /* padding: 10px;
+    margin: 5px;*/
+    margin-right: 10px; 
+
+}

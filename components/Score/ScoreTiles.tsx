@@ -52,8 +52,6 @@ export default function ScoreTiles ({currentNumble , currentGuess}: ScoreTilesPr
                                   ${(scoreArray[1]==="correct") ? styles.correctChar : ''}
                                   ${(scoreArray[1]==="misplaced") ? styles.misplacedChar : ''}
                                   ${(scoreArray[1]==="wrong") ? styles.wrongChar : ''}`}> </span>
-            </div>
-            <div className={styles.scoreRow}>
                 <span className={`${styles.tile} 
                                   ${(scoreArray[2]==="correct") ? styles.correctChar : ''}
                                   ${(scoreArray[2]==="misplaced") ? styles.misplacedChar : ''}

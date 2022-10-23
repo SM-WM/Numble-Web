@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 import Help from './help'
-import Keyboard from '../components/Keyboard/Keyboard'
 import Statistics from './statistics'
 import styles from '../styles/Home.module.css'
 import GameBoard from '../components/Board/GameBoard'
+import { useState } from 'react'
 
 const Home: NextPage = () => {
   function generateNumble(){
@@ -13,8 +13,11 @@ const Home: NextPage = () => {
     // Get sub-array of first n elements after shuffled
    return shuffledDigits.slice(0, 4).join('');
   }
+  const[currNumble, setCurrNumble] = useState(generateNumble());
 
-  const currNumble = generateNumble();
+  const NewGame = () => {
+    setCurrNumble(generateNumble())
+  }
 
   return (
     <div className='mainBody'>
@@ -22,7 +25,8 @@ const Home: NextPage = () => {
       <GameBoard correctNumble={currNumble} />
       {/* <Help  />
       <Statistics /> */}
-      <Keyboard />
+      {/* <button onClick={NewGame}>New Game</button>
+      <p>{currNumble}</p> */}
     </div>
   )
 }

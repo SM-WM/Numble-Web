@@ -1,3 +1,11 @@
+:root {
+  --black: #141414;
+  --yellow: #F2C84C;
+  --green: #26AD60;
+  --gray: #828282;
+
+}
+
 html,
 body {
   padding: 0;
@@ -9,6 +17,7 @@ body {
 .mainBody {
   justify-content: center;
   text-align: center;
+
 
 }
 
