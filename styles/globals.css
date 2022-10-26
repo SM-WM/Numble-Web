@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities; 
+
 :root {
   --black: #141414;
   --yellow: #F2C84C;
@@ -14,13 +18,6 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-.mainBody {
-  justify-content: center;
-  text-align: center;
-
-
-}
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -30,9 +27,9 @@ body {
     background: black;
   }
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities; 
+
+
+
 
 
 

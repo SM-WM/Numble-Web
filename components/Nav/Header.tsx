@@ -18,8 +18,8 @@ export default function Header() {
                             <div className={styles.title}> Numble </div>
                         </li>
                         <li className={styles.rightAlign}>
-                            <Link href="/settings"><a><SettingsIcon height={35} width={35} /></a></Link>
-                            <Link href="/statistics"><a><BarChartIcon /></a></Link>
+                            <Link href="/settings"><a><SettingsIcon height={35} width={35} sx={{color: 'black'}} /></a></Link>
+                            <Link href="/statistics"><a><BarChartIcon sx={{color: 'black'}} /></a></Link>
                             <HowToPlay />  
                         </li>
 

@@ -24,26 +24,26 @@
 
 /* Animation Delay */
 .tile:nth-of-type(2) {
-    animation-delay: 200ms;
+    animation-delay: 100ms;
 }
 .tile:nth-of-type(3) {
-    animation-delay: 400ms;
+    animation-delay: 200ms;
 }
 .tile:nth-of-type(4) {
-    animation-delay: 600ms;
+    animation-delay: 300ms;
 }
 
 
 .correctChar {
-    animation: flipIn 1s linear, bgCorrect 1s linear forwards;
+    animation: flipIn 600ms linear, bgCorrect 600ms linear forwards;
 }
 
 .misplacedChar {
-    animation: flipIn 1s linear, bgMisplaced 1s linear forwards;
+    animation: flipIn 600ms linear, bgMisplaced 600ms linear forwards;
 }
 
 .wrongChar {
-    animation: flipIn 1s linear, bgWrong 1s linear forwards;
+    animation: flipIn 600ms linear, bgWrong 600ms linear forwards;
 }
 
 @keyframes flipIn {

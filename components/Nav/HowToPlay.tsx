@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-//import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HelpOutlineRoundedIcon from '@mui/icons-material/HelpOutlineRounded';
@@ -18,11 +17,11 @@ export default function HowToPlay() {
            <HelpOutlineRoundedIcon sx={{ color: "black" }} />
         </button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Guess the Numble in 10 tries</Modal.Title>
         </Modal.Header>
-        <Modal.Body className='test'>
+        <Modal.Body className={styles.modal} >
           <p>Every numble is composed of 4 unique digits. Each guess will be a 4 digit number... Your solution&apos;s digits don&apos;t have to be unique. Hit the enter button to submit.</p>
 
           <p>After each guess, the score column will let you know:</p>

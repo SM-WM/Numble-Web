@@ -37,7 +37,6 @@ export default function ScoreTiles ({currentNumble , currentGuess}: ScoreTilesPr
         for(let i = correct + misplaced; i < currentNumble.length; i++) {
             scoreArray[i] = "wrong"
         }
-        console.log(scoreArray)
     }
 
   
