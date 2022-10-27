@@ -1,29 +1,34 @@
 import Row from "./Row";
-import { useCallback, useEffect, useState, Dispatch, SetStateAction} from "react";
+import { useCallback, useEffect} from "react";
 import styles from './GameBoard.module.css'
 import Keyboard from "./Keyboard/Keyboard"
-import Link from "next/link"
 import Statistics from '../Statistics'
-import { CurrencyBitcoin } from "@mui/icons-material";
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
+import { gameActions } from "../../store/game-slice";
+import StopWatch from "./StopWatch";
 
 type GameBoardProps = {
-    correctNumble: string;
-    submittedGuesses: string[][];
     setSubmittedGuesses: React.Dispatch<React.SetStateAction<string[][]>>;
-    guess: string[];
     setGuess: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export default function GameBoard({ correctNumble,
-                                    submittedGuesses,
-                                    setSubmittedGuesses,
-                                    guess,
-                                    setGuess}: GameBoardProps) {
+export default function GameBoard() {
 
-    const[gameOver, setGameOver] = useState(false)
+    const [currentNumble, numberOfDigits, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect] = useAppSelector(
+        ({game: {currNumble, numberOfDigits, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect}}) => {
+            return [currNumble, numberOfDigits, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect];
+        }
+    );
 
-    const totalGuessMax = 10;
+    const [numOfGames, gameList, winRate] = useAppSelector(
+        ({user: {numOfGames, gameList, winRate}}) => {
+            return [numOfGames, gameList, winRate];
+        }
+    );
+
     const currNumOfGuesses = submittedGuesses.length;
+    
+    const dispatch = useAppDispatch();
 
     const handleKeyInput = useCallback((key: string) => {
         const isNum = /^[0-9]$/.test(key);
@@ -32,29 +37,28 @@ export default function GameBoard({ correctNumble,
 
         //key is backspace
         if (isBackspace) {
-            setGuess((prev: string[]) => {
-                const temp = [...prev];
-                temp.pop();
-                return temp;
-            })
+            dispatch(gameActions.backSpaceHandler());
         }
         //display key pressed
-        else if (isNum && guess.length < 4) {
-            setGuess((prev: any) => [...prev, key])
+        else if (isNum) {
+            dispatch(gameActions.addToGuess(key));
         }
         //display guess after submittes; reset guess so move on to next guess
-        else if (isSubmit && guess.length === 4 && currNumOfGuesses < 10) {
-           
-            setSubmittedGuesses((prev: string[][]) => [...prev, guess])
-            setGuess([])
-            console.log("submitted")
+        else if (isSubmit) {
+           dispatch(gameActions.addToSubmittedGuesses(guess));
         }
-    }, [guess.length])
-
-    const isCorrect = currNumOfGuesses > 0 && submittedGuesses[currNumOfGuesses - 1].join('') === correctNumble;
+    }, [dispatch, gameOver])
 
     useEffect(() => {
-        console.log("called")
+        if(gameOver){
+            setTimeout(() => {
+                dispatch(gameActions.showStat())
+            }, 2000)
+
+        }
+    },[gameOver])
+
+    useEffect(() => {
         function handleKeyDown({ key }: { key: string }) {
             window.onkeydown = (ev: KeyboardEvent):any => {
                 if(ev.key === 'Enter'){
@@ -64,30 +68,24 @@ export default function GameBoard({ correctNumble,
             handleKeyInput(key)
         }
         window.addEventListener('keydown', handleKeyDown);
-
         if(isCorrect) {
-            setTimeout(() => setGameOver(true), 2000)
             window.removeEventListener('keydown', handleKeyDown)
         }
 
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         }
-    }, [guess.length, guess, handleKeyInput])
+    }, [guess.length, guess, handleKeyInput, currentNumble])
 
-    useEffect(() => {
-        if(currNumOfGuesses == 10) {
-            setTimeout(() => setGameOver(true), 2000)
-        }
-    }, [currNumOfGuesses])
 
     return (
         <div className={styles.mainBoard}>
+            <StopWatch />
             <div className={styles.boardContainer}>
                 <div className={styles.board}>
                     <div>
                         {Array.from({ length: currNumOfGuesses }).map((_, i) => {
-                            return <Row guess={submittedGuesses[i]} key={i} currentNumble={correctNumble} tryIndex={i + 1} />
+                            return <Row guess={submittedGuesses[i]} key={i} currentNumble={currentNumble} tryIndex={i + 1} />
                         })}
                     </div>
 
@@ -96,7 +94,7 @@ export default function GameBoard({ correctNumble,
                     </div>
 
                     <div>
-                        {Array.from({ length: totalGuessMax - currNumOfGuesses - (isCorrect ? 0 : 1) }).map((_, i) => {
+                        {Array.from({ length: maxNumberOfGuesses - currNumOfGuesses - (isCorrect ? 0 : 1) }).map((_, i) => {
                             return <Row guess={[]} currentNumble="" key={i} tryIndex={currNumOfGuesses + (isCorrect ? 0 : 1) + i + 1} />
                         })}
                     </div>
@@ -105,11 +103,8 @@ export default function GameBoard({ correctNumble,
 
             <Keyboard keyPressHandler={handleKeyInput} />
 
-            <Statistics isCorrect={isCorrect} 
-                        currNumOfGuesses={currNumOfGuesses} 
-                        correctNumble={correctNumble} 
-                        show ={gameOver}
-                        setShow={setGameOver}/>
+            <Statistics />
+
         </div>
 
 

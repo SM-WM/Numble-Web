@@ -5,8 +5,18 @@ import Image from 'next/image'
 import numble_logo from '../../public/numble_logo.svg'
 import HowToPlay from './HowToPlay'
 import Link from 'next/link'
+import { useAppDispatch } from "../../store/hooks"
+import { gameActions } from "../../store/game-slice";
+import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 
 export default function Header() {
+    const dispatch = useAppDispatch();
+    const resetGameHandler = () => {
+        dispatch(gameActions.resetGame());
+    };
+    const showStatHandler = () =>{
+        dispatch(gameActions.showStat());
+    };
 
     return (
             <nav className={styles.test}>
@@ -18,17 +28,13 @@ export default function Header() {
                             <div className={styles.title}> Numble </div>
                         </li>
                         <li className={styles.rightAlign}>
-                            <Link href="/settings"><a><SettingsIcon height={35} width={35} sx={{color: 'black'}} /></a></Link>
-                            <Link href="/statistics"><a><BarChartIcon sx={{color: 'black'}} /></a></Link>
+                            <button onClick={resetGameHandler}><RefreshOutlinedIcon sx={{color: 'black'}} /></button>
+                            {/* <Link href="/settings"><a><SettingsIcon height={35} width={35} sx={{color: 'black'}} /></a></Link> */}
+                            <button onClick={showStatHandler}><BarChartIcon sx={{color: 'black'}} /></button>
                             <HowToPlay />  
                         </li>
-
-
                     </ul>
-                  
-                </div>
-
-                
+                </div> 
             </nav>
     )
 }

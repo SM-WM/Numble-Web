@@ -9,8 +9,7 @@ type keyPressHandlerType = (key: string) => void
 type KeyboardProps = {
     keyPressHandler: keyPressHandlerType
 }
-//123456
-//backspace 789 enter
+
 export default function Keyboard({keyPressHandler}: KeyboardProps) {
     
     const firstRow = useMemo(() => {
