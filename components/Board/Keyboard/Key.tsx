@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import styles from './Key.module.css'
 
 type KeyProps = {
@@ -16,7 +15,6 @@ export default function Key({keyName, keyPressHandler, keyDisplay, specialKey}: 
                         ${(specialKey? styles.specialKey : '')}`}
             onClick = {() => {
                 keyPressHandler(keyName)
-                console.log(keyName)
                 }}
         >
             {keyDisplay}

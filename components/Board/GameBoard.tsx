@@ -2,7 +2,7 @@ import Row from "./Row";
 import { useCallback, useEffect} from "react";
 import styles from './GameBoard.module.css'
 import Keyboard from "./Keyboard/Keyboard"
-import Statistics from '../Statistics'
+import Statistics from '../Statistics/Statistics'
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { gameActions } from "../../store/game-slice";
 import StopWatch from "./StopWatch";
@@ -14,15 +14,9 @@ type GameBoardProps = {
 
 export default function GameBoard() {
 
-    const [currentNumble, numberOfDigits, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect] = useAppSelector(
-        ({game: {currNumble, numberOfDigits, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect}}) => {
-            return [currNumble, numberOfDigits, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect];
-        }
-    );
-
-    const [numOfGames, gameList, winRate] = useAppSelector(
-        ({user: {numOfGames, gameList, winRate}}) => {
-            return [numOfGames, gameList, winRate];
+    const [currentNumble, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect] = useAppSelector(
+        ({game: {currNumble, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect}}) => {
+            return [currNumble, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect];
         }
     );
 
@@ -81,23 +75,22 @@ export default function GameBoard() {
     return (
         <div className={styles.mainBoard}>
             <StopWatch />
-            <div className={styles.boardContainer}>
-                <div className={styles.board}>
-                    <div>
-                        {Array.from({ length: currNumOfGuesses }).map((_, i) => {
-                            return <Row guess={submittedGuesses[i]} key={i} currentNumble={currentNumble} tryIndex={i + 1} />
-                        })}
-                    </div>
 
-                    <div className={styles.currentGuess}>
-                        {(!isCorrect && currNumOfGuesses < 10) && <Row guess={guess} currentNumble="" tryIndex={currNumOfGuesses + 1} />}
-                    </div>
+            <div className={styles.board}>
+                <div>
+                    {Array.from({ length: currNumOfGuesses }).map((_, i) => {
+                        return <Row guess={submittedGuesses[i]} key={i} currentNumble={currentNumble} tryIndex={i + 1} />
+                    })}
+                </div>
 
-                    <div>
-                        {Array.from({ length: maxNumberOfGuesses - currNumOfGuesses - (isCorrect ? 0 : 1) }).map((_, i) => {
-                            return <Row guess={[]} currentNumble="" key={i} tryIndex={currNumOfGuesses + (isCorrect ? 0 : 1) + i + 1} />
-                        })}
-                    </div>
+                <div className={styles.currentGuess}>
+                    {(!isCorrect && currNumOfGuesses < 10) && <Row guess={guess} currentNumble="" tryIndex={currNumOfGuesses + 1} />}
+                </div>
+
+                <div>
+                    {Array.from({ length: maxNumberOfGuesses - currNumOfGuesses - (isCorrect ? 0 : 1) }).map((_, i) => {
+                        return <Row guess={[]} currentNumble="" key={i} tryIndex={currNumOfGuesses + (isCorrect ? 0 : 1) + i + 1} />
+                    })}
                 </div>
             </div>
 

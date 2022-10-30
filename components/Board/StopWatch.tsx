@@ -9,9 +9,9 @@ export default function StopWatch(){
     const [isPaused, setIsPaused] = useState(true);
     const [time, setTime] = useState(0);
 
-    const [maxNumberOfGuesses, currentNumble, submittedGuesses, gameOver, isCorrect] = useAppSelector(
-        ({game: {maxNumberOfGuesses, currNumble, submittedGuesses, gameOver, isCorrect}}) => {
-            return [maxNumberOfGuesses, currNumble, submittedGuesses, gameOver, isCorrect];
+    const [currentNumble, submittedGuesses, gameOver, isCorrect] = useAppSelector(
+        ({game: {currNumble, submittedGuesses, gameOver, isCorrect}}) => {
+            return [currNumble, submittedGuesses, gameOver, isCorrect];
         }
     );
     const dispatch = useAppDispatch();
@@ -38,12 +38,6 @@ export default function StopWatch(){
         }
 
     },[submittedGuesses])
-
-    function calcScore(){
-        let goodTime = 30 * 600//thirty minutes
-        let exactScore = ((maxNumberOfGuesses*10/submittedGuesses.length) + (goodTime/time))*10;
-        return isCorrect ? exactScore : exactScore/4;
-    }
 
     useEffect(() => {
         if (gameOver){

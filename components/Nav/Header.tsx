@@ -4,7 +4,6 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import Image from 'next/image'
 import numble_logo from '../../public/numble_logo.svg'
 import HowToPlay from './HowToPlay'
-import Link from 'next/link'
 import { useAppDispatch } from "../../store/hooks"
 import { gameActions } from "../../store/game-slice";
 import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
@@ -19,12 +18,11 @@ export default function Header() {
     };
 
     return (
-            <nav className={styles.test}>
+            <nav>
                 <div className={styles.wrapper} >
                     <ul className={styles.ul}>
                         <li className={styles.leftAlign}>
-                            <Link href="/"><a>
-                            <Image src={numble_logo} alt="Numble_logo" height={35} width={35}/></a></Link>
+                            <Image src={numble_logo} alt="Numble_logo" height={35} width={35}/>
                             <div className={styles.title}> Numble </div>
                         </li>
                         <li className={styles.rightAlign}>

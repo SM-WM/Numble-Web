@@ -17,6 +17,7 @@ export default function Keyboard({keyPressHandler}: KeyboardProps) {
             return <Key keyPressHandler={keyPressHandler} key={char} keyName={char} keyDisplay={char}/>
         });
     }, [keyPressHandler])
+    
     const secondRow = useMemo(() => {
         return "789".split("").map((char) => {
             return <Key keyPressHandler={keyPressHandler} key={char} keyName={char} keyDisplay={char}/>
@@ -24,12 +25,10 @@ export default function Keyboard({keyPressHandler}: KeyboardProps) {
     }, [keyPressHandler])
 
     const backspace = useMemo(() => {
-        // return <span className={`${styles.key} ${styles.backspace}`}><BackspaceOutlinedIcon /></span>
         return <Key keyPressHandler={keyPressHandler} keyDisplay={<BackspaceOutlinedIcon />} keyName={"Backspace"} specialKey={true} />
     }, [keyPressHandler])
 
     const enter = useMemo(() => {
-        // return <span className={`${styles.key} ${styles.backspace}`}><KeyboardReturnOutlinedIcon /></span>
         return <Key keyPressHandler={keyPressHandler} keyDisplay={<KeyboardReturnOutlinedIcon />} keyName={"Enter"} specialKey={true} />
     }, [keyPressHandler])
 

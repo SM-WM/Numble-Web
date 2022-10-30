@@ -10,20 +10,8 @@
 
 }
 
-.boardContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    overflow: hidden;
-}
-
 .currentGuess{
   background-color: bisque;
-}
-
-.Test {
-  font-size: 15px;
 }
 
 .mainBoard {

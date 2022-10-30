@@ -1,25 +1,10 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import styles from './Chart.module.css'
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
+import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function Chart() {
 
@@ -54,10 +39,10 @@ export default function Chart() {
         labels,
         datasets: [
           {
-            label: 'Dataset 1',
+            label: 'XP',
             data: performanceArray,
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)', 
+            borderColor: 'rgb(249, 176, 99)',
+            backgroundColor: 'rgba(252, 218, 182, 0.8)', 
           }
         ],
       };

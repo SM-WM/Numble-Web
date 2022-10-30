@@ -2,11 +2,11 @@ import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import styles from "./Statistics.module.css"
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useAppDispatch, useAppSelector } from "../store/hooks"
-import { gameActions } from "../store/game-slice";
-import StatTile from "./Statistics/StatTile";
-import { userActions, GameHistory } from "../store/user-slice";
-import Chart from "./Statistics/Chart"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
+import { gameActions } from "../../store/game-slice";
+import StatTile from "./StatTile";
+import { userActions, GameHistory } from "../../store/user-slice";
+import Chart from "./Chart"
 
 
 
@@ -23,22 +23,20 @@ export default function Statistics(){
         }
     );
     const dispatch = useAppDispatch();
-
-    const currNumOfGuesses = submittedGuesses.length
+    const currNumOfGuesses = submittedGuesses.length;
     const handleClose = () => {
         dispatch(gameActions.closeStat());
     }
-
     const thisScore = () => {
         let goodTime = 30 * 600//thirty minutes
-        let exactScore = ((maxNumberOfGuesses*10/submittedGuesses.length) + (goodTime/time))*10;
+        let exactScore = ((maxNumberOfGuesses*10/currNumOfGuesses) + (goodTime/time))*10;
         return isCorrect ? exactScore : exactScore/4;
     }
 
     useEffect(() => {
         if (gameOver){
             const thisGame: GameHistory = {
-                numOfGuess: submittedGuesses.length,
+                numOfGuess: currNumOfGuesses,
                 didWin: isCorrect,
                 totalTime: time,
                 score: thisScore()
@@ -48,13 +46,10 @@ export default function Statistics(){
             dispatch(userActions.setWinRate())
             dispatch(userActions.setStreak(isCorrect))
             if (isCorrect) {
-                dispatch(userActions.setPerformanceArray(submittedGuesses.length))}
+                dispatch(userActions.setPerformanceArray(currNumOfGuesses))}
         }
 
     },[time])
-
-
-
 
     return(
         <div>
@@ -78,7 +73,7 @@ export default function Statistics(){
                     <div className={styles.mainBody}>
                         <p>You Win!</p>
                         <p className={styles.solution}>{currentNumble}</p>
-                        <p>You found the Numble in {submittedGuesses.length} guesses
+                        <p>You found the Numble in {currNumOfGuesses} guesses
                         </p>
                     </div>
 

@@ -4,7 +4,6 @@ import Header from '../components/Nav/Header'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <>
-
     <Component {...pageProps} />
   </>
 
