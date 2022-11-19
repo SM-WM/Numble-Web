@@ -3,9 +3,9 @@ const User = require("../models/user");
 
 const { createUserJwt } = require("../utils/tokens");
 
-const security = require("../middleware/security");
-const permissions = require("../middleware/permissions");
-const { Router } = require("express");
+//const security = require("../middleware/security");
+//const permissions = require("../middleware/permissions");
+
 const router = express.Router();
 
 router.post("/login", async (req, res, next) => {

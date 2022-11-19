@@ -4,6 +4,7 @@ const morgan = require("morgan");
 
 
 //Routes declared here
+const userRoutes = require("./routes/users");
 
 
 
@@ -19,6 +20,8 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 //app.use(security.extractUserFromJwt);
+
+app.use("/user", userRoutes);
 
 
 

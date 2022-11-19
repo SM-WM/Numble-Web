@@ -7,3 +7,4 @@ CREATE TABLE users(
     createdAt      TIMESTAMP NOT NULL DEFAULT NOW(),
     updatedAt      TIMESTAMP NOT NULL DEFAULT NOW()
 );
+
