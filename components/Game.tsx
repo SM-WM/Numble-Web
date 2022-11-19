@@ -3,7 +3,7 @@ import styles from './Game.module.css'
 import { Provider } from "react-redux";
 import store from "../store/store"
 import Header from '../components/Nav/Header'
-    
+  
 
 
 export default function Game () {
