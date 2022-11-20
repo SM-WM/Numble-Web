@@ -5,6 +5,7 @@ const morgan = require("morgan");
 
 //Routes declared here
 const userRoutes = require("./routes/users");
+const statRoutes = require("./routes/statistics")
 
 
 
@@ -22,6 +23,7 @@ app.use(morgan("tiny"));
 //app.use(security.extractUserFromJwt);
 
 app.use("/user", userRoutes);
+app.use("/stats", statRoutes)
 
 
 

@@ -54,6 +54,23 @@ class ApiClient {
     });
   }
 
+  async postStatistics(stats){
+
+    return await this.request({
+      endpoint: `stats/post`,
+      method: `POST`,
+      data: stats,
+    })
+
+  }
+
+  async getStatistics(id){
+    return await this.request({
+      endpoint: `stats/get/` + id,
+      method: `GET`,
+    })
+  }
+
 }
 
 

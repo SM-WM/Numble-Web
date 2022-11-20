@@ -8,3 +8,14 @@ CREATE TABLE users(
     updatedAt      TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
+CREATE TABLE statistics(
+    id              SERIAL PRIMARY KEY,
+    user_id         INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    played          INTEGER,
+    previous        INTEGER,
+    winpcnt         FLOAT,
+    streak          INTEGER,
+    maxStreak       INTEGER
+);
+
