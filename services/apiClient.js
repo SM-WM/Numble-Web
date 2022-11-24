@@ -36,6 +36,9 @@ class ApiClient {
 
   // GET Requests
 
+  async fetchUserFromToken() {
+    return await this.request({ endpoint: `user/me`, method: `GET` });
+  }
 
 
   async loginUser(credentials) {
@@ -69,6 +72,11 @@ class ApiClient {
       endpoint: `stats/get/` + id,
       method: `GET`,
     })
+  }
+
+  async logoutUser() {
+    this.setToken(null);
+    localStorage.setItem(this.tokenName, "");
   }
 
 }

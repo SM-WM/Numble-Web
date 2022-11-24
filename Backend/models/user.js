@@ -7,6 +7,17 @@ const Token = require("../utils/tokens");
 //sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 class User {
+  static makePublicUser(user) {
+    return {
+      id: user.id,
+      firstName: user.firstname,
+      lastName: user.lastname,
+      email: user.email,
+      createdAt: user.createdat,
+
+    };
+  }
+
   static async login(credentials) {
     const requiredFields = ["email", "password"];
     requiredFields.forEach((field) => {
@@ -100,6 +111,8 @@ class User {
     );
 
     var user = result.rows[0];
+
+    user = this.makePublicUser(user)
   
     return user;
   }
@@ -116,7 +129,24 @@ class User {
     const query = `SELECT * FROM users WHERE email = $1`;
     const result = await db.query(query, [email.toLowerCase()]);
     var user = result.rows[0];
+
     
+
+    
+    return user;
+  }
+
+  static async fetchUserById(id) {
+    if (!id) {
+      throw new BadRequestError("No id provided");
+    }
+
+    const query = `SELECT * FROM users WHERE id = $1`;
+    const result = await db.query(query, [id]);
+    var user = result.rows[0];
+
+    user = this.makePublicUser(user)
+
     return user;
   }
 }

@@ -4,13 +4,19 @@ import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { gameActions } from "../../store/game-slice";
+import Link from "next/link";
 import StatTile from "./StatTile";
 import { userActions, GameHistory } from "../../store/user-slice";
 import Chart from "./Chart"
 
 
+interface IStatisticsProps {
+    user : any
+   
+}
 
-export default function Statistics(){
+
+export default function Statistics({user}: IStatisticsProps){
     
     const [maxNumberOfGuesses, currentNumble, submittedGuesses, isCorrect, showStat, gameOver, time] = useAppSelector(
         ({game: {maxNumberOfGuesses, currNumble, submittedGuesses, isCorrect, showStat, gameOver, time }}) => {
@@ -56,7 +62,10 @@ export default function Statistics(){
         <Modal show={showStat} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <div className={styles.title}>Statistics</div>
+          
         </Modal.Header>
+        {user ? null :
+        <div className={styles.login}><Link href="/Login">Login</Link> {"to keep track of personal stats"}</div>}
         <Modal.Body  >
             <div className={styles.tileWrapper}>
                 <StatTile label="Played" value={numOfGames} />
@@ -90,7 +99,9 @@ export default function Statistics(){
 
                 <Chart />
         </Modal.Body>
+        
       </Modal>
+      
         </div>
 
     )

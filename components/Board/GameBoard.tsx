@@ -10,9 +10,17 @@ import StopWatch from "./StopWatch";
 type GameBoardProps = {
     setSubmittedGuesses: React.Dispatch<React.SetStateAction<string[][]>>;
     setGuess: React.Dispatch<React.SetStateAction<string[]>>;
+   
 }
 
-export default function GameBoard() {
+interface IGameBoardProps {
+    user : any
+   
+}
+
+//export default function Number({content}: NumberProps)
+
+export default function GameBoard({user}: IGameBoardProps){
 
     const [currentNumble, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect] = useAppSelector(
         ({game: {currNumble, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect}}) => {
@@ -20,6 +28,8 @@ export default function GameBoard() {
         }
     );
 
+
+  
     const currNumOfGuesses = submittedGuesses.length;
     
     const dispatch = useAppDispatch();
@@ -71,6 +81,7 @@ export default function GameBoard() {
         }
     }, [guess.length, guess, handleKeyInput, currentNumble])
 
+   
 
     return (
         <div className={styles.mainBoard}>
@@ -96,11 +107,13 @@ export default function GameBoard() {
 
             <Keyboard keyPressHandler={handleKeyInput} />
 
-            <Statistics />
+            <Statistics user={user}/>
 
         </div>
 
 
     )
 }
+
+
 
