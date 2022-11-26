@@ -138,10 +138,19 @@ export default function Statistics({
        
       };
 
-    stats.id ? updateStatistics() : null
+    stats.id ? updateStatistics() : setStats({
+        played: stats.played + 1,
+        previous: Math.trunc(thisGame.score + stats.previous),
+        streak: thisGame.didWin ? stats.streak + 1 : 0,
+        maxstreak: Math.max(stats.maxstreak, thisGame.didWin ? stats.streak + 1 : 0),
+        wins: thisGame.didWin ? stats.wins + 1 : stats.wins,
+        winpcnt: ((thisGame.didWin ? stats.wins + 1 : stats.wins) / (stats.played + 1)) * 100,
+    })
       
     }
   }, [time]);
+
+  console.log(stats)
 
 
   return (
