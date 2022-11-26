@@ -67,6 +67,14 @@ class ApiClient {
 
   }
 
+  async updateStatistics(stats, id){
+    return await this.request({
+      endpoint: `stats/update/` + id,
+      method: `PUT`,
+      data: stats,
+    })
+  }
+
   async getStatistics(id){
     return await this.request({
       endpoint: `stats/get/` + id,

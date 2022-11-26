@@ -15,12 +15,14 @@ type GameBoardProps = {
 
 interface IGameBoardProps {
     user : any
+    stats : any
+    setStats : (params: any) => any;
    
 }
 
 //export default function Number({content}: NumberProps)
 
-export default function GameBoard({user}: IGameBoardProps){
+export default function GameBoard({user, stats, setStats}: IGameBoardProps){
 
     const [currentNumble, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect] = useAppSelector(
         ({game: {currNumble, maxNumberOfGuesses, guess, submittedGuesses, gameOver, isCorrect}}) => {
@@ -107,7 +109,7 @@ export default function GameBoard({user}: IGameBoardProps){
 
             <Keyboard keyPressHandler={handleKeyInput} />
 
-            <Statistics user={user}/>
+            <Statistics user={user} stats={stats} setStats={setStats}/>
 
         </div>
 

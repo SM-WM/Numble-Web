@@ -16,6 +16,7 @@ CREATE TABLE statistics(
     previous        INTEGER,
     winpcnt         FLOAT,
     streak          INTEGER,
-    maxStreak       INTEGER
+    maxStreak       INTEGER,
+    wins            INTEGER
 );
 

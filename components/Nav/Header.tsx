@@ -13,9 +13,10 @@ import apiClient from "../../services/apiClient";
 interface IHeaderProps {
   user: any;
   setUser: (params: any) => any;
+  setStats : (params: any) => any;
 }
 
-export default function Header({ user, setUser }: IHeaderProps) {
+export default function Header({ user, setUser, setStats}: IHeaderProps) {
   const dispatch = useAppDispatch();
   const resetGameHandler = () => {
     dispatch(gameActions.resetGame());
@@ -27,6 +28,14 @@ export default function Header({ user, setUser }: IHeaderProps) {
   const handleLogout = async () => {
     await apiClient.logoutUser();
     setUser(null);
+    setStats({
+      played: 0,
+      previous: 0,
+      winpcnt: 0,
+      streak: 0,
+      maxstreak: 0,
+      wins: 0,
+    })
     // setError(null);
   };
 

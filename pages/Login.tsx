@@ -97,7 +97,7 @@ export default function SignIn() {
     if (data?.user) {
 
       setIsLoading(false);
-     
+      console.log(data.user)
       apiClient.setToken(data.token);
       setIsLoading(false);
       router.push("/")

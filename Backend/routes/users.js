@@ -12,6 +12,7 @@ router.post("/login", async (req, res, next) => {
   try {
     const user = await User.login(req.body);
     const token = createUserJwt(user);
+    console.log(token)
     return res.status(200).json({ user, token });
   } catch (err) {
     next(err);

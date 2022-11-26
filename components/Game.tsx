@@ -14,16 +14,28 @@ export default function Game(){
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [stats, setStats] = useState({
+    played: 0,
+    previous: 0,
+    winpcnt: 0,
+    streak: 0,
+    maxstreak: 0,
+    wins: 0,
+  })
  
 
     useEffect(() => {
         const fetchUser = async () => {
           const { data, error } = await apiClient.fetchUserFromToken();
 
-          console.log("this is data", data)
+         
     
           if (data) {
             setUser(data.user);
+            const item = await apiClient.getStatistics(data.user.id)
+            
+            setStats(item.data.stats)
           }
           if (error) {
             setError(error);
@@ -39,6 +51,8 @@ export default function Game(){
         } else {
           setIsLoading(false);
         }
+
+      
       }, []);
 
 
@@ -47,9 +61,9 @@ export default function Game(){
 
     return(
         <Provider store={store}>
-            <Header user={user} setUser={setUser}/>
+            <Header user={user} setUser={setUser} setStats={setStats}/>
             <div className={styles.game}>
-                <GameBoard  user={user}/>
+                <GameBoard  user={user} stats={stats} setStats={setStats}/>
             </div>      
         </Provider>
 
