@@ -166,25 +166,23 @@ export default function Statistics({
         )}
         <Modal.Body>
           <div className={styles.tileWrapper}>
-            <StatTile label="Played" value={numOfGames} />
+            <StatTile label="Played" value={stats.played} />
             <StatTile
-              label={gameOver ? "Current XP" : "Previous XP"}
+              label={"Previous XP"}
               value={
-                numOfGames > 0 ? Math.trunc(gameList[numOfGames - 1].score) : 0
+                stats.previous
               }
             />
             <StatTile
-              label="Time"
+              label="Current XP"
               value={
-                numOfGames > 0
-                  ? Math.trunc(gameList[numOfGames - 1].totalTime)
-                  : 0
+                Math.trunc(thisScore())
               }
             />
 
-            <StatTile label="Win %" value={Math.trunc(winRate)} />
-            <StatTile label="Streak" value={streak} />
-            <StatTile label="Max Streak" value={maxStreak} />
+            <StatTile label="Win %" value={Math.round(stats.winpcnt * 10) / 10} />
+            <StatTile label="Streak" value={stats.streak} />
+            <StatTile label="Max Streak" value={stats.maxstreak} />
           </div>
 
           {isCorrect && gameOver && (
