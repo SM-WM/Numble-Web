@@ -7,6 +7,8 @@ import HowToPlay from './HowToPlay'
 import { useAppDispatch } from "../../store/hooks"
 import { gameActions } from "../../store/game-slice";
 import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
+import settings from '../../pages/settings'
+import Link from "next/link";
 
 export default function Header() {
     const dispatch = useAppDispatch();
@@ -30,6 +32,11 @@ export default function Header() {
                             {/* <Link href="/settings"><a><SettingsIcon height={35} width={35} sx={{color: 'black'}} /></a></Link> */}
                             <button onClick={showStatHandler}><BarChartIcon sx={{color: 'black'}} /></button>
                             <HowToPlay />  
+                           <Link href={"/auth/login"}>
+                            <a className="py-2 px-4 text-lg bg-teal-500 text-white rounded-lg font-medium ml-8">
+                                Sign Up
+                            </a>
+                           </Link>
                         </li>
                     </ul>
                 </div> 
