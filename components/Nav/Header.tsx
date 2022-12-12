@@ -1,46 +1,78 @@
 import styles from "./Header.module.css";
-import SettingsIcon from '@mui/icons-material/Settings';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import Image from 'next/image'
-import numble_logo from '../../public/numble_logo.svg'
-import HowToPlay from './HowToPlay'
-import { useAppDispatch } from "../../store/hooks"
+import SettingsIcon from "@mui/icons-material/Settings";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import Image from "next/image";
+import numble_logo from "../../public/numble_logo.svg";
+import HowToPlay from "./HowToPlay";
+import { useAppDispatch } from "../../store/hooks";
 import { gameActions } from "../../store/game-slice";
-import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
-import settings from '../../pages/settings'
 import Link from "next/link";
+import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
+import apiClient from "../../services/apiClient";
 
-export default function Header() {
-    const dispatch = useAppDispatch();
-    const resetGameHandler = () => {
-        dispatch(gameActions.resetGame());
-    };
-    const showStatHandler = () =>{
-        dispatch(gameActions.showStat());
-    };
-
-    return (
-            <nav>
-                <div className={styles.wrapper} >
-                    <ul className={styles.ul}>
-                        <li className={styles.leftAlign}>
-                            <Image src={numble_logo} alt="Numble_logo" height={35} width={35}/>
-                            <div className={styles.title}> Numble </div>
-                        </li>
-                        <li className={styles.rightAlign}>
-                            <button onClick={resetGameHandler}><RefreshOutlinedIcon sx={{color: 'black'}} /></button>
-                            {/* <Link href="/settings"><a><SettingsIcon height={35} width={35} sx={{color: 'black'}} /></a></Link> */}
-                            <button onClick={showStatHandler}><BarChartIcon sx={{color: 'black'}} /></button>
-                            <HowToPlay />  
-                           <Link href={"/auth/login"}>
-                            <a className="py-2 px-4 text-lg bg-teal-500 text-white rounded-lg font-medium ml-8">
-                                Sign Up
-                            </a>
-                           </Link>
-                        </li>
-                    </ul>
-                </div> 
-            </nav>
-    )
+interface IHeaderProps {
+  user: any;
+  setUser: (params: any) => any;
+  setStats : (params: any) => any;
 }
 
+export default function Header({ user, setUser, setStats}: IHeaderProps) {
+  const dispatch = useAppDispatch();
+  const resetGameHandler = () => {
+    dispatch(gameActions.resetGame());
+  };
+  const showStatHandler = () => {
+    dispatch(gameActions.showStat());
+  };
+
+  const handleLogout = async () => {
+    await apiClient.logoutUser();
+    setUser(null);
+    setStats({
+      played: 0,
+      previous: 0,
+      winpcnt: 0,
+      streak: 0,
+      maxstreak: 0,
+      wins: 0,
+    })
+    // setError(null);
+  };
+
+  // console.log(user.id)
+
+  return (
+    <nav>
+      <div className={styles.wrapper}>
+        <ul className={styles.ul}>
+          <li className={styles.leftAlign}>
+            <Image src={numble_logo} alt="Numble_logo" height={35} width={35} />
+            <div className={styles.title}> Numble </div>
+          </li>
+          <li className={styles.rightAlign}>
+            {user ? (
+              <button onClick={handleLogout}>Logout</button>
+            ) : (
+              <div className={styles.users}>
+                <Link href="/Login">
+                  <button>Login</button>
+                </Link>
+                <Link href="/Register">
+                  <button>Register</button>
+                </Link>{" "}
+              </div>
+            )}
+            <button onClick={resetGameHandler}>
+              <RefreshOutlinedIcon sx={{ color: "black" }} />
+            </button>
+            {/* <Link href="/settings"><a><SettingsIcon height={35} width={35} sx={{color: 'black'}} /></a></Link> */}
+            <button onClick={showStatHandler}>
+              <BarChartIcon sx={{ color: "black" }} />
+            </button>
+            <HowToPlay />
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
+}
