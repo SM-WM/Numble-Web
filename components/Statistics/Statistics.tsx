@@ -73,31 +73,23 @@ export default function Statistics({
       }
 
       setForm((f: any) => ({ ...f, played: stats.played + 1 }));
-      setForm((f: any) => ({
-        ...f,
-        previous: Math.trunc(thisGame.score + stats.previous),
-      }));
-      setForm((f: any) => ({
-        ...f,
-        streak: thisGame.didWin ? stats.streak + 1 : 0,
-      }));
-      setForm((f: any) => ({
-        ...f,
+      setForm((f: any) => ({...f, previous: Math.trunc(thisGame.score + stats.previous),}));
+      setForm((f: any) => ({...f, streak: thisGame.didWin ? stats.streak + 1 : 0,}));
+      setForm((f: any) => ({...f,
         maxstreak: Math.max(
           stats.maxstreak,
           thisGame.didWin ? stats.streak + 1 : 0
         ),
       }));
-      setForm((f: any) => ({
-        ...f,
+      setForm((f: any) => ({...f,
         wins: thisGame.didWin ? stats.wins + 1 : stats.wins,
       }));
 
       const winner = thisGame.didWin ? stats.wins + 1 : stats.wins;
-      setForm((f: any) => ({
-        ...f,
+      setForm((f: any) => ({...f,
         winpcnt: (winner / (stats.played + 1)) * 100,
       }));
+
       const updateStatistics = async () => {
         const { data, error } = await apiClient.updateStatistics({
             played: stats.played + 1,
@@ -109,8 +101,6 @@ export default function Statistics({
         }, stats.user_id);    
        
         setStats(data.statistics)
-
-       
       };
 
     stats.id ? updateStatistics() : setStats({
@@ -124,7 +114,6 @@ export default function Statistics({
       
     }
   }, [time]);
-
 
   return (
     <div>
@@ -140,19 +129,8 @@ export default function Statistics({
         <Modal.Body>
           <div className={styles.tileWrapper}>
             <StatTile label="Played" value={stats.played} />
-            <StatTile
-              label={"Previous XP"}
-              value={
-                stats.previous
-              }
-            />
-            <StatTile
-              label="Current XP"
-              value={
-                Math.trunc(thisScore())
-              }
-            />
-
+            <StatTile label={"Previous XP"} value={ stats.previous } />
+            {gameOver && <StatTile label="Current XP" value={ Math.trunc(thisScore()) }/>}
             <StatTile label="Win %" value={Math.round(stats.winpcnt * 10) / 10} />
             <StatTile label="Streak" value={stats.streak} />
             <StatTile label="Max Streak" value={stats.maxstreak} />
