@@ -39,10 +39,10 @@ export default function Chart() {
         labels,
         datasets: [
           {
-            label: 'XP',
+            label: 'Number of Games',
             data: performanceArray,
-            borderColor: 'rgb(249, 176, 99)',
-            backgroundColor: 'rgba(252, 218, 182, 0.8)', 
+            borderColor: 'rgb(40, 116, 166)',
+            backgroundColor: 'rgba(171, 200, 218, 0.8)', 
           }
         ],
       };

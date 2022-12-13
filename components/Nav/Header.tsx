@@ -4,7 +4,7 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import Image from "next/image";
 import numble_logo from "../../public/numble_logo.svg";
 import HowToPlay from "./HowToPlay";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { gameActions } from "../../store/game-slice";
 import Link from "next/link";
 import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
@@ -25,6 +25,12 @@ export default function Header({ user, setUser, setStats}: IHeaderProps) {
     dispatch(gameActions.showStat());
   };
 
+  const [gameOver] = 
+  useAppSelector(
+    ({game: { gameOver },
+    }) => { return [ gameOver ];}
+  );
+
   const handleLogout = async () => {
     await apiClient.logoutUser();
     setUser(null);
@@ -36,10 +42,8 @@ export default function Header({ user, setUser, setStats}: IHeaderProps) {
       maxstreak: 0,
       wins: 0,
     })
-    // setError(null);
   };
 
-  // console.log(user.id)
 
   return (
     <nav>
@@ -50,10 +54,12 @@ export default function Header({ user, setUser, setStats}: IHeaderProps) {
             <div className={styles.title}> Numble </div>
           </li>
           <li className={styles.rightAlign}>
-            {user ? (
-              <button onClick={handleLogout}>Logout</button>
-            ) : (
-              <div className={styles.users}>
+            {user ? 
+            (
+              gameOver && <button onClick={handleLogout}>Logout</button> 
+            ) : 
+            (
+              gameOver && <div className={styles.users}>
                 <Link href="/Login">
                   <button>Login</button>
                 </Link>
@@ -62,9 +68,9 @@ export default function Header({ user, setUser, setStats}: IHeaderProps) {
                 </Link>{" "}
               </div>
             )}
-            <button onClick={resetGameHandler}>
-              <RefreshOutlinedIcon sx={{ color: "black" }} />
-            </button>
+            {gameOver &&  <button onClick={resetGameHandler}>
+                            <RefreshOutlinedIcon sx={{ color: "black" }} />
+                          </button> }
             {/* <Link href="/settings"><a><SettingsIcon height={35} width={35} sx={{color: 'black'}} /></a></Link> */}
             <button onClick={showStatHandler}>
               <BarChartIcon sx={{ color: "black" }} />

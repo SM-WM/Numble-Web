@@ -20,7 +20,7 @@
 .mainBody {
     padding: 20px;
     margin: 40px;
-    background-color: #fcdab6;
+    background-color: #BCD3E0;
     border: 2px solid #2874A6;
     border-radius: 10px;
     text-align: center;
@@ -34,5 +34,13 @@
 }
 
 .login{
+    padding: 10px;
+    margin-left: 45px;
+    margin-right: 45px;
+    margin-top: 20px;
+    margin-bottom: 10px ;
+    background-color: #BCD3E0;
+    border: 2px solid #2874A6;
+    border-radius: 10px;
     text-align: center;
 }

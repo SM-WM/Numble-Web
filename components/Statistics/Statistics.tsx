@@ -129,7 +129,7 @@ export default function Statistics({
         <Modal.Body>
           <div className={styles.tileWrapper}>
             <StatTile label="Played" value={stats.played} />
-            <StatTile label={"Previous XP"} value={ stats.previous } />
+            <StatTile label={"Total XP"} value={ stats.previous } />
             {gameOver && <StatTile label="Current XP" value={ Math.trunc(thisScore()) }/>}
             <StatTile label="Win %" value={Math.round(stats.winpcnt * 10) / 10} />
             <StatTile label="Streak" value={stats.streak} />

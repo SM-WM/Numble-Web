@@ -52,7 +52,6 @@ class User {
             "lastName",
             "email",
             "password",
-            
         ];
 
         requiredFields.forEach((field) => {
@@ -112,7 +111,33 @@ class User {
         
         var user = result.rows[0];
 
-        //srashta add stats code
+        const id = user.id
+
+        await db.query(
+          `
+          INSERT INTO statistics(
+            user_id,
+            played,
+            previous,
+            winpcnt,
+            streak,
+            maxStreak,
+            wins
+          )
+          VALUES ($1,$2,$3,$4,$5,$6,$7)
+          RETURNING played,previous,winpcnt,streak,maxStreak;
+          `,
+          [
+            id,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        );
+        
         user = this.makePublicUser(user)
   
         return user;       
